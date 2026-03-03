@@ -1,0 +1,428 @@
+/* Variabel Warna Luxe */
+:root {
+    --gold: #D4AF37;       /* Emas */
+    --dark-bg: #121212;   /* Hitam Pekat */
+    --card-bg: #ffffff;   /* Putih untuk kartu agar bersih */
+    --text-main: #1a1a1a;
+    --text-muted: #888888;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(black 15%, transparent 16%) 0 0,
+                radial-gradient(black 15%, transparent 16%) 8px 8px,
+                radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+                radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color: #1a1a1a;
+    background-size: 16px 16px;
+    color: #fff;
+}/* Header Section */
+.navbar {
+    background: var(--dark-bg);
+    padding: 30px 15px;
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--gold);
+    font-weight: 300;
+}
+
+.tagline {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 8px;
+    opacity: 0.8;
+}
+
+.category-wrapper {
+    display: flex;
+    justify-content: center; /* Membuat tombol ke tengah secara horizontal */
+    align-items: center;     /* Menyejajarkan tombol secara vertikal */
+    gap: 10px;               /* Memberi jarak antar tombol */
+    padding: 20px 10px;      /* Jarak atas-bawah agar tidak menempel ke navbar */
+    flex-wrap: wrap;         /* Agar di layar HP yang kecil tombolnya otomatis turun (tidak terpotong) */
+    width: 100%;             /* Memastikan container selebar layar */
+}
+
+.btn-cat {
+    background: transparent;
+    color: #888;             /* Warna tulisan saat tidak aktif */
+    border: 1px solid #444;  /* Garis pinggir tipis */
+    padding: 8px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 20px;     /* Membuat tombol lonjong/kapsul agar lebih modern */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Warna saat tombol aktif atau diklik */
+.btn-cat.active {
+    background: #D4AF37;     /* Warna emas khas LUXE ARA */
+    color: #000;             /* Tulisan jadi hitam agar terbaca jelas */
+    border-color: #D4AF37;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); /* Efek cahaya emas */
+}
+
+/* Grid System 2 Kolom */
+.container {
+    padding: 0 12px;
+}
+
+.main-grid {
+    display: grid;
+    /* 1. Logika Otomatis: Minimal kartu lebarnya 160px, maksimal mengisi ruang yang ada */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+    
+    gap: 15px;
+    padding: 15px;
+    margin: 0 auto;
+    width: 100%;
+    
+    /* 2. Batasan Maksimal: Agar tidak lebih dari 5 kolom di layar monitor super lebar */
+    max-width: 1100px; 
+    
+    justify-content: center; /* Menjaga seluruh grid tetap di tengah browser */
+}
+
+/* 3. Khusus untuk Layar Sangat Kecil (HP Jadul) agar tetap 2 kolom */
+@media (max-width: 380px) {
+    .main-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+}
+/* Card Design */
+.pcard {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* --- Bagian Pengaturan Gambar Produk --- */
+
+.imgbox {
+    width: 100%;
+    aspect-ratio: 1 / 1;    /* Membuat kotak gambar jadi persegi sempurna */
+    position: relative;
+    overflow: hidden;       /* Memotong gambar yang kelebihan agar tidak keluar kotak */
+    background: #f0f0f0;    /* Warna dasar jika gambar loading */
+}
+
+/* Tambahkan kode ini jika belum ada */
+.pcard img {
+    width: 100%;            /* Lebar gambar mengikuti kotak */
+    height: 100%;           /* Tinggi gambar mengikuti kotak */
+    object-fit: cover;      /* KUNCI: Gambar memenuhi kotak tanpa terlihat gepeng */
+    display: block;
+    transition: transform 0.5s ease; /* Efek halus saat di-zoom */
+}
+
+/* Efek opsional: Gambar sedikit membesar saat kursor di atasnya */
+.pcard:hover img {
+    transform: scale(1.05);
+}
+
+.imgbox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badges-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 5px; /* Jarak antar badge */
+    z-index: 10;
+}
+
+/* Badge Gold yang sudah ada */
+.badge-gold {
+    position: relatives;
+    top: 5px
+    left: 5px;
+    background: var(--gold);
+    color: var(--dark-bg);
+    font-size: 9px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 2px;
+    z-index: 2;
+}
+
+/* Badge Tambahan (Pria/Wanita) */
+.badge-outline {
+    position: relatives;
+    top: 5px;
+    left: 60px; /* Sesuaikan jarak ini agar berada di sebelah Best Seller */
+    background: rgba(0, 0, 0, 0.6); /* Hitam transparan agar elegan */
+    color: white;
+    border: 1px solid var(--gold); /* Garis pinggir emas */
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 2px;
+    z-index: 2;
+    text-transform: uppercase;
+}
+/* Info Produk */
+/* Memastikan teks di dalam kartu produk tetap terbaca jelas */
+/* Container teks di bawah gambar */
+.pcard .meta {
+    background: #ffffff; 
+    padding: 15px;
+    text-align: center; /* KUNCINYA DI SINI: Membuat semua teks ke tengah */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Memastikan elemen flex juga ke tengah */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Kategori (EXTRAIT DE PARFUM) */
+.category-name {
+    color: #777 !important;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+/* Nama Produk */
+.product-name {
+    color: #1a1a1a !important;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 5px 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+    width: 100%;
+}
+
+/* Harga */
+.price {
+    color: #D4AF37 !important; 
+    font-weight: 800;
+    font-size: 16px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+/* Tombol WhatsApp di dalam kartu */
+.btn-wa {
+    display: inline-block;
+    width: 90%; /* Tidak full agar ada ruang di kiri kanan */
+    background: #25D366;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 25px; /* Membuat tombol lonjong agar senada dengan btn-cat */
+    font-size: 11px;
+    font-weight: 800;
+    margin-top: 10px;
+    transition: 0.3s;
+    border: none;
+    text-align: center;
+}
+
+.btn-wa:hover {
+    background: var(--gold);
+    color: white;
+}
+
+/* Sticky Mobile Nav */
+.mobile-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    z-index: 999;
+}
+
+/* Container Navigasi Bawah */
+.mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #111; /* Hitam pekat agar mewah */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #D4AF37; /* Garis emas tipis di atas */
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+    z-index: 9999;
+}
+
+/* Item Navigasi (Home & WA) */
+.nav-item {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    transition: 0.3s;
+    flex: 1;
+    padding: 10px 0;
+}
+
+/* Khusus Tombol Home (Warna Putih/Emas) */
+.nav-item:first-child {
+    color: #fff;
+}
+.nav-item:first-child.active {
+    color: #D4AF37; /* Emas saat aktif */
+}
+
+/* Khusus Tombol WhatsApp (Hijau Khas WA atau Emas) */
+/* Saya sarankan Hijau agar orang langsung tahu itu tombol Chat */
+.nav-item:last-child {
+    color: #25D366; /* Hijau WhatsApp */
+    border-left: 1px solid #333; /* Pemisah kecil */
+}
+
+/* Efek Icon (jika kamu pakai icon) */
+.nav-item span {
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Efek saat ditekan */
+.nav-item:active {
+    transform: scale(0.9);
+    background: rgba(255,255,255,0.05);
+}
+.nav-item.active {
+    color: var(--dark-bg);
+}
+
+.nav-item.active span {
+    color: var(--gold);
+}
+
+/* Container Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Background gelap transparan */
+    display: none; /* Sembunyi dulu, muncul lewat JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Di atas segalanya */
+    padding: 20px;
+}
+
+/* Kotak Popup */
+.popup-content {
+    background: #fff;
+    width: 100%;
+    max-width: 350px;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    animation: popupScale 0.5s ease;
+}
+
+.popup-content img {
+    width: 100%;
+    display: block;
+}
+
+.popup-text { padding: 20px; }
+.popup-text h2 { font-size: 18px; margin-bottom: 10px; color: #1a1a1a; }
+.popup-text p { font-size: 12px; color: #666; margin-bottom: 15px; }
+
+/* Tombol X */
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10001;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    line-height: 35px;
+}
+
+.btn-shop {
+    background: #1a1a1a;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+    padding: 10px 20px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Animasi Muncul */
+@keyframes popupScale {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* Sesuaikan dengan tinggi nav kamu */
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 9999; /* Pastikan di atas semua elemen */
+}
+
+.main-grid {
+    /* ... kode lama kamu ... */
+    margin-bottom: 100px; /* KUNCINYA: Memberi ruang setinggi bar navigasi + sedikit bonus */
+}
+
+/* Atau jika kamu ingin lebih rapi untuk semua layar */
+body {
+    padding-bottom: 80px; 
+}
